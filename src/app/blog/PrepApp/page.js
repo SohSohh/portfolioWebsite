@@ -46,54 +46,53 @@ const asciiArt = `⠀⠀⠀⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠀⡀�
 
 
 
+// src/app/blog/PrepApp/page.js
 export default function BlogPage() {
-        return (
-            <div style={{position: 'relative', minHeight: '100vh', overflow: 'hidden'}}>
-                    {/* ASCII Art Background */}
-                    <div
-                        style={{
-                                position: 'absolute',
-                                top: -50,
-                                left: 300,
-                                width: '100%',
-                                height: '100%',
-                                zIndex: 0,
-                                whiteSpace: 'pre',
-                                color: '#cccccc',
-                                fontFamily: 'monospace',
-                                fontSize: '0.7rem',
-                                opacity: 0.15,
-                                pointerEvents: 'none',
-                                userSelect: 'none',
-                                overflow: 'hidden',
-                        }}
-                        aria-hidden="true"
-                    >
-                            {asciiArt}
-                    </div>
-                    {/* Main Content */}
-                    <TypeOutContainer style={{position: 'relative', zIndex: 1, paddingLeft: '3rem', paddingRight: '5rem', overflow: 'hidden'}}>
-                            <div style={{position: 'relative', zIndex: 1}}>
-                                    <TypeOut
-                                        text="Prep App"
-                                        style={{...heading, fontSize: '2rem'}}
-                                    />
-                                    <TypeOut
-                                        text={"This is a simple app designed to <u>help in university entrance exam preperation</u>. It allows users to create and manage their own question sets and review their answers. The app focuses on giving users flexibility, allowing them to test themselves within any defined time limit, for any number of MCQs, from subjects of their choice.\n\nThe app was developed using <span style=\"color:#67c15a;\">Jetpack Compose</span> and <span style=\"color:#3cca50;\">Android Studio</span> with <span style=\"color:#cfc34b;\">Django-Rest Framework</span> for the backend. You can find more details regarding the technologies utilized for the app along with screenshots on the Github repository linked below.\n\n\nGithub Repository: <a href='https://www.github.com/SohSohh/PrepApp/' style='color: #ffffff;'  target='_blank'>Prep App</a>"}
-                                        style={text}
-                                        render={displayed => (
-                                            <span dangerouslySetInnerHTML={{ __html: displayed.replace(/\n/g, '<br />') }} />
-                                        )}
-                                    />
-                                    <TypeOut
-                                        text={`<a href="/" style="color:#ff5252;text-decoration:underline;">Back to Home</a>`}
-                                        style={text}
-                                        render={displayed => (
-                                            <span dangerouslySetInnerHTML={{__html: displayed}}/>
-                                        )}
-                                    />
-                            </div>
-                    </TypeOutContainer>
+    return (
+        <div style={{position: 'relative', minHeight: '100vh', overflow: 'hidden'}}>
+            {/* ASCII Art Background */}
+            <div
+                style={{
+                    position: 'absolute',
+                    top: -50,
+                    left: 300,
+                    width: '100%',
+                    height: '100%',
+                    zIndex: 0,
+                    whiteSpace: 'pre',
+                    color: '#cccccc',
+                    fontFamily: 'monospace',
+                    fontSize: '0.7rem',
+                    opacity: 0.15,
+                    pointerEvents: 'none',
+                    userSelect: 'none',
+                    overflow: 'hidden',
+                }}
+                aria-hidden="true"
+            >
+                {asciiArt}
             </div>
-        );
+            {/* Main Content */}
+            <TypeOutContainer style={{position: 'relative', zIndex: 1, paddingLeft: '3rem', paddingRight: '5rem', overflow: 'hidden'}}>
+                <TypeOut
+                    text="Prep App"
+                    style={{...heading, fontSize: '2rem'}}
+                />
+                <TypeOut
+                    text={"This is a simple app designed to <u>help in university entrance exam preperation</u>. It allows users to create and manage their own question sets and review their answers. The app focuses on giving users flexibility, allowing them to test themselves within any defined time limit, for any number of MCQs, from subjects of their choice.\n\nThe app was developed using <span style=\"color:#67c15a;\">Jetpack Compose</span> and <span style=\"color:#3cca50;\">Android Studio</span> with <span style=\"color:#cfc34b;\">Django-Rest Framework</span> for the backend. You can find more details regarding the technologies utilized for the app along with screenshots on the Github repository linked below.\n\n\nGithub Repository: <a href='https://www.github.com/SohSohh/PrepApp/' style='color: #ffffff;'  target='_blank'>Prep App</a>"}
+                    style={text}
+                    render={displayed => (
+                        <span dangerouslySetInnerHTML={{ __html: displayed.replace(/\n/g, '<br />') }} />
+                    )}
+                />
+                <TypeOut
+                    text={`<a href="/" style="color:#ff5252;text-decoration:underline;">Back to Home</a>`}
+                    style={text}
+                    render={displayed => (
+                        <span dangerouslySetInnerHTML={{__html: displayed}}/>
+                    )}
+                />
+            </TypeOutContainer>
+        </div>
+    );
 }
