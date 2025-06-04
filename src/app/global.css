@@ -1,0 +1,382 @@
+/* NK57 Monospace Font Imports */
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Cd Bd.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Cd Bd It.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Cd Bk.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Cd Bk It.otf') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Cd Eb.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Cd Eb It.otf') format('opentype');
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Cd Lt.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Cd Lt It.otf') format('opentype');
+    font-weight: 200;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Cd Rg.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Cd Rg It.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Cd Sb.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Cd Sb It.otf') format('opentype');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Ex Bd.otf') format('opentype');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Ex Bd It.otf') format('opentype');
+    font-weight: 800;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Ex Bk.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Ex Bk It.otf') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Ex Eb.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Ex Eb It.otf') format('opentype');
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Ex Lt.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Ex Lt It.otf') format('opentype');
+    font-weight: 200;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Ex Rg.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Ex Rg It.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Ex Sb.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Ex Sb It.otf') format('opentype');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace No Bd.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace No Bd It.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace No Bk.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace No Bk It.otf') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace No Eb.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace No Eb It.otf') format('opentype');
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace No Lt.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace No Lt It.otf') format('opentype');
+    font-weight: 200;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace No Rg.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace No Rg It.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace No Sb.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace No Sb It.otf') format('opentype');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Sc Bd.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Sc Bd It.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Sc Bk.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Sc Bk It.otf') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Sc Eb.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Sc Eb It.otf') format('opentype');
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Sc Lt.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Sc Lt It.otf') format('opentype');
+    font-weight: 200;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Sc Rg.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Sc Rg It.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Sc Sb.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Sc Sb It.otf') format('opentype');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Se Bd.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Se Bd It.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Se Bk.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Se Bk It.otf') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Se Eb.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Se Eb It.otf') format('opentype');
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Se Lt.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NK57 Monospace';
+    src: url('../../public/fonts/nk57_monospace/NK57 Monospace Se Lt It.otf') format('opentype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+
+
+
+@font-face {
+    font-family: 'NK57';
+    src: url('../../public/fonts/nk57_monospace/nk57-monospace.cdlt-regular.otf') format('opentype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NK57-Heading';
+    src: url('../../public/fonts/nk57_monospace/nk57-monospace.scrg-regular.otf') format('opentype');
+    font-style: normal;
+}
+
+
+
+/* End NK57 Monospace Font Imports */
+
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --font-main: 'Segoe UI', sans-serif;
+    --text-color: #333;
+    --background-color: #2d2d2d;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main);
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.main-text {
+    font-family: 'NK57 Monospace', monospace;
+    font-size: .75rem;
+    color: #cccccc;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-width: 100%;
+    box-sizing: border-box;
+}

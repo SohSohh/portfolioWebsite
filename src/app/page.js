@@ -1,103 +1,184 @@
-import Image from "next/image";
+"use client";
+import { useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
+import TypeOut from './TypeOut';
+import './global.css';
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+const asciiArt = `  /$$$$$$            /$$        /$$$$$$
+ /$$__  $$          | $$       /$$__  $$
+| $$  \\__/  /$$$$$$ | $$$$$$$ | $$  \\__/  /$$$$$$   /$$$$$$   /$$$$$$  /$$   /$$
+|  $$$$$$  /$$__  $$| $$__  $$|  $$$$$$  /$$__  $$ /$$__  $$ /$$__  $$| $$  | $$
+ \\____  $$| $$  \\ $$| $$  \\ $$ \\____  $$| $$  \\ $$| $$  \\__/| $$  \\__/| $$  | $$
+ /$$  \\ $$| $$  | $$| $$  | $$ /$$  \\ $$| $$  | $$| $$      | $$      | $$  | $$
+|  $$$$$$/|  $$$$$$/| $$  | $$|  $$$$$$/|  $$$$$$/| $$      | $$      |  $$$$$$$
+ \\______/  \\______/ |__/  |__/ \\______/  \\______/ |__/      |__/       \\____  $$
+                                                                       /$$  | $$
+                                                                      |  $$$$$$/
+                                                                       \\______/`;
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+const flower = `
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡤⠒⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠖⠋⠀⠀⠀⢻⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢴⠾⠑⢦⡞⠃⠀⠀⠀⠀⠀⣼⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣯⠌⠀⠀⠀⢳⠀⠀⠀⠀⠀⢠⠧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢇⠀⢀⡔⠋⠻⠚⣆⢀⣀⡠⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⡝⠆⠀⠀⠀⠁⡧⠆⠈⢣⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡄⠉⠉⠉⠒⠢⢄⡀⠀⠀⠀⠀⠀⢹⣼⡀⢀⣀⠜⠃⠀⠀⢺⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢧⠀⠀⠀⠀⠀⠀⠙⢶⠀⠀⠀⠀⣾⠿⠛⠙⠢⠤⠤⠤⠒⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⢀⢾⠢⠴⠤⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣇⠀⠀⠀⠀⠀⠀⠈⡇⠀⠀⢠⡿⠄⠀⠀⠀⠀⢀⡷⡒⠒⠲⢤⡀⠀⢀⣠⢀⣀⣠⠀⠀⠀⠀
+                ⠀⠀⠀⠀⢠⠋⠀⢠⠀⠀⠀⠙⣆⣀⡤⠤⠤⣄⡀⠀⠀⠈⢦⡀⡀⠀⠀⠀⢀⡏⢀⣴⠟⠁⠀⠀⠀⠀⢀⡜⠀⠀⡄⠀⠀⢙⡞⠁⠀⠀⢀⠈⢦⠀⠀⠀
+                ⠀⠀⠀⠀⡇⠀⠀⠨⡄⠀⠀⢀⠜⠃⠀⠀⠀⠈⠉⣱⡆⠀⠀⠉⠓⠲⠶⠶⣮⣠⡾⠃⠀⠀⠀⠀⠀⠀⠈⣇⠀⠀⠰⡀⠀⢸⠀⢠⢀⠔⠁⠀⠈⣶⠀⠀
+                ⠀⠀⠀⠀⢳⡀⠀⠀⣰⣤⣄⡌⣄⢀⢀⠠⠒⠁⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⡟⣿⠉⠀⠀⠀⠀⠀⠀⢀⡴⠼⠦⠄⡀⠡⣰⣼⠻⣾⠟⣀⠀⢀⡼⠈⠀⠀
+                ⠀⠀⢀⡔⠋⠉⠓⢺⢽⡝⣦⣺⢁⣴⡊⠀⣀⠀⠀⣰⠛⠀⠀⠀⠀⠀⠀⢰⡿⠃⠀⠀⠀⠀⠀⠀⢰⡇⠀⠀⠀⠀⠀⠱⡯⡖⠛⡤⣺⡟⠋⠉⠙⠢⡀⠀
+                ⠀⢠⠯⠀⠀⠀⠀⢈⡯⢮⣏⣸⣗⠛⠏⠉⠀⠉⠙⢦⡀⠀⠀⠀⠀⠀⢠⣻⠋⠀⠀⠀⠀⠀⠀⠀⣞⠁⠀⠉⠁⠀⣨⠽⠛⢿⢿⣽⠓⠟⢄⡀⠀⠀⢳⡀
+                ⠠⣞⠒⠀⠈⠉⠉⠀⠷⡜⢱⠙⡴⣧⡒⠠⢀⠀⠀⠀⣧⠀⠀⠀⠀⢠⣷⠃⠀⠀⢀⣀⣤⣴⡶⠿⠛⠳⢤⣀⠀⡰⠁⠀⠀⠆⠀⠙⡆⠀⠀⠈⠁⢀⣘⡤
+                ⠀⠀⠑⣅⡄⠀⠀⣀⡴⠁⠌⠛⠹⣀⠀⠀⠀⠀⠀⠀⣸⠀⠀⢀⡴⣣⣷⣶⡾⠽⠿⣫⠭⠤⢤⡀⠀⠀⠀⠈⠉⢳⠀⠀⠸⠀⠀⠀⣸⠦⠤⠤⠔⠊⠀⠀
+                ⠀⠀⠀⠀⠉⠉⡏⠀⠀⣘⠀⠀⠀⠙⣦⢄⣠⣀⡴⠋⠁⢀⡴⣿⠟⠉⠁⠀⠀⠀⠀⡇⠀⠀⠀⠈⢢⡄⠀⠀⠀⠈⢮⡂⡀⠀⢀⡴⠃⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠳⡠⡀⠃⠀⠀⢀⡜⡞⣆⠀⠀⢀⣤⢞⡵⠟⠁⠀⠀⠀⠀⠀⠀⠀⠸⡄⠀⠀⠀⠀⢧⠀⠀⠀⠀⠀⠈⠗⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠈⢦⠦⠔⠒⠉⠀⡟⢸⠒⣋⡥⠞⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢶⡀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠞⠁⣩⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠓⠢⢼⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠖⢋⡠⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⣖⠋⣡⡔⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⢸⠃⣴⠗⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⢠⠏⣸⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⣰⠃⢠⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⠀⠀⢀⠞⠁⢀⠞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                ⠀⢀⣴⣫⠤⠖⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+            `
+
+export const text = {
+    fontFamily: "'NK57 Monospace', monospace",
+    fontSize: '1rem',
+    color: '#cccccc',
+    whiteSpace: 'pre-wrap',
+    wordBreak: 'break-word',
+    maxWidth: '100%',
+    boxSizing: 'border-box',
+};
+
+export const heading = {
+    fontFamily: "'NK57-Heading', normal",
+    fontWeight: 600,
+    color: '#cccccc',
+    whiteSpace: 'pre-wrap',
+    wordBreak: 'break-word',
+    maxWidth: '100%',
+    boxSizing: 'border-box',
+};
+
+const ascii = {
+    fontFamily: "'NK57 Monospace', monospace",
+    fontSize: '.75rem',
+    color: '#cccccc',
+    whiteSpace: 'pre-wrap',
+    wordBreak: 'break-word',
+    maxWidth: '100%',
+    boxSizing: 'border-box',
+    minHeight: '15em',
+};
+
+export default function Page() {
+    const [reverse, setReverse] = useState(false);
+    const [pendingHref, setPendingHref] = useState(null);
+    const router = useRouter();
+
+    // Intercept all <a> clicks
+    const handleLinkClick = useCallback(e => {
+        const a = e.target.closest("a");
+        if (a && a.getAttribute("href")) {
+            e.preventDefault();
+            setPendingHref(a.getAttribute("href"));
+            setReverse(true);
+        }
+    }, []);
+
+    // After reverse animation, navigate
+    const handleReverseDone = useCallback(() => {
+        if (pendingHref) {
+            router.push(pendingHref);
+        }
+    }, [pendingHref, router]);
+
+    return (
+        <div style={{
+            display: 'flex',
+            padding: '5rem',
+            minHeight: '100vh'
+        }}>
+            <div
+                className="text-center p-8"
+                style={{
+                    flex: 1,
+                    maxWidth: '50%',
+                    overflowX: 'hidden',
+                    boxSizing: 'border-box',
+                    position: 'relative', // Add position relative
+                    height: '100%' // Fix height
+                }}
+                onClick={handleLinkClick}
+            >
+                <div style={{
+                    position: 'relative',
+                    minHeight: '220px' // Set minimum height for ASCII art container
+                }}>
+                    <TypeOut
+                        text={asciiArt}
+                        style={{
+                            ...ascii,
+                            position: 'absolute', // Position absolutely
+                            top: 0,
+                            left: 0
+                        }}
+                        reverse={reverse}
+                        onReverseDone={handleReverseDone}
+                        skipWhitespace={true}
+                    />
+                </div>
+
+                <div style={{
+                    marginTop: '0px', // Add fixed margin to avoid overlap
+                    position: 'relative'
+                }}>
+                    <TypeOut
+                        text={'Hi, I\'m Sohaib (or Soh, as my friends like to call me). I\'m an <span style="color:#ff5252;">undergraduate student</span> at <span style="color:#6250b3;"> NUST</span> with a passion for Machine Learning and Backend Development. I\'m always tinkering with new ideas and diving into unfamiliar territory — so you\'ll find a lot of variety in my projects. Feel free to explore my work and check out the blogs where I share my development process!\n\nYou can take a look at my projects <a href="/blog/PrepApp" style="color:#ff5252;text-decoration:underline;">here</a> \n\nEmail: <a href="mailto:sohaibmubashir6@gmail.com" style="color:#ff5252;text-decoration:underline;">sohaibmubashir6@gmail.com</a>\nGithub: <a href="https://www.github.com/SohSohh" target="_blank" style="color:#ff5252;text-decoration:underline;">SohSohh</a>\nLinkedIn: <a href="https://www.linkedin.com/in/sohaib-mubashir-1578b5248/" target="_blank" style="color:#ff5252;text-decoration:underline;">Sohaib Mubashir</a>\n\nThis website is intended to be viewed on desktop as it may not render properly on mobile devices :)'}
+                        style={text}
+                        render={displayed => (
+                            <span dangerouslySetInnerHTML={{ __html: displayed }} />
+                        )}
+                        reverse={reverse}
+                    />
+                </div>
+            </div>
+            <div
+                style={{
+                    whiteSpace: "pre",
+                    flex: 1,
+                    color: "#cccccc",
+                    textAlign: "right",
+                    width: "50%", // Fix width
+                    fontSize: '1rem',
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    position: 'relative', // Add position
+                    overflow: 'hidden' // Prevent overflow
+                }}
+            >
+                <TypeOut
+                    text={flower}
+                    style={{
+                        position: 'absolute', // Position absolutely
+                        right: 0,
+                        top: 0,
+                        maxHeight: '100vh'
+                    }}
+                    render={displayed => (
+                        <span dangerouslySetInnerHTML={{ __html: displayed }} />
+                    )}
+                    reverse={reverse}
+                    skipWhitespace={true}
+                />
+            </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    );
 }
