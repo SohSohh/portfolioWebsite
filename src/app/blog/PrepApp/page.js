@@ -74,7 +74,6 @@ export default function BlogPage() {
                 {asciiArt}
             </div>
             {/* Main Content */}
-            <TypeOutContainer style={{position: 'relative', zIndex: 1, paddingLeft: '3rem', paddingRight: '5rem', overflow: 'hidden'}}>
                 <TypeOut
                     text="Prep App"
                     style={{...heading, fontSize: '2rem'}}
@@ -93,7 +92,6 @@ export default function BlogPage() {
                         <span dangerouslySetInnerHTML={{__html: displayed}}/>
                     )}
                 />
-            </TypeOutContainer>
         </div>
     );
 }
