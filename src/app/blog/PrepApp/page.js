@@ -85,7 +85,10 @@ export default function BlogPage() {
                         <span dangerouslySetInnerHTML={{ __html: displayed.replace(/\n/g, '<br />') }} />
                     )}
                 />
-                <Link href="/" style={{ color: "#ff5252", textDecoration: "underline", fontSize: text.fontSize, fontFamily: text.fontFamily }}>
+                <Link
+                    href={process.env.NEXT_PUBLIC_BASE_PATH || '/'}
+                    style={{ color: "#ff5252", textDecoration: "underline", fontSize: text.fontSize, fontFamily: text.fontFamily }}
+                >
                     Back to Home
                 </Link>
         </div>
