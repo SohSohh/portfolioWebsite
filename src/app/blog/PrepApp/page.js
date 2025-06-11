@@ -87,10 +87,10 @@ export default function BlogPage() {
                     )}
                 />
                 <TypeOut
-                    text="Back to Home"
-                    style={{...text, color: '#ff5252', textDecoration: 'underline'}}
+                    text={`<a href="/" style="color:#ff5252;text-decoration:underline;">Back to Home</a>`}
+                    style={text}
                     render={displayed => (
-                        <Link href="/">{displayed}</Link>
+                        <span dangerouslySetInnerHTML={{__html: displayed}}/>
                     )}
                 />
             </TypeOutContainer>

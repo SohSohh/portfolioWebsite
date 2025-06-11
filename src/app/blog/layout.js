@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
 import { text, heading } from '../page.js';
@@ -148,7 +148,14 @@ export default function BlogLayout({ children }) {
                     <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                         {blogs.map(blog => (
                             <li key={blog.id} style={{marginBottom: '1rem'}}>
-                                <Link href={blog.link} style={{...text, color: '#ff5252', textDecoration: 'none'}}>
+                                <Link href={blog.link}
+                                    style={{...text, color: '#ff5252', textDecoration: 'none'}}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setPendingHref(blog.link);
+                                        setReverse(true);
+                                    }}
+                                >
                                     {blog.title}
                                 </Link>
                             </li>
