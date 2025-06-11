@@ -10,6 +10,25 @@ export default function TypeOutContainer({ children, style = {}, reverseTimeout 
     const router = useRouter();
     const containerRef = useRef(null);
 
+
+    // src/app/components/TypeOutContainer.js
+    const getBasePath = () =>
+        process.env.NODE_ENV === "production" ? "/portfolioWebsite" : "";
+
+    const handleReverseDone = useCallback(() => {
+        if (pendingHref) {
+            let href = pendingHref;
+            if (
+                process.env.NODE_ENV === "production" &&
+                href.startsWith("/") &&
+                !href.startsWith(getBasePath())
+            ) {
+                href = getBasePath() + href;
+            }
+            router.push(href);
+        }
+    }, [pendingHref, router]);
+
     const handleLinkClick = useCallback(e => {
         const a = e.target.closest("a");
         if (a && a.getAttribute("href")) {
@@ -27,11 +46,7 @@ export default function TypeOutContainer({ children, style = {}, reverseTimeout 
         return () => node.removeEventListener("click", handleLinkClick);
     }, [handleLinkClick]);
 
-    const handleReverseDone = useCallback(() => {
-        if (pendingHref) {
-            router.push(pendingHref);
-        }
-    }, [pendingHref, router]);
+    // Duplicate handleReverseDone removed
 
     useEffect(() => {
         if (!reverse || !pendingHref) return;
