@@ -3,12 +3,9 @@ import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { text, heading } from '../page.js';
 
-const getBasePath = () =>
-    process.env.NODE_ENV === "production" ? "/portfolioWebsite" : "";
-
 const blogs = [
-    { id: 1, title: "Prep App", link: getBasePath() + "/blog/PrepApp" },
-    // { id: 2, title: "Dummy Project Post 2", link: getBasePath() + "/blog/dummy2" }
+    { id: 1, title: "Prep App", link: "/blog/PrepApp" },
+    // { id: 2, title: "Dummy Project Post 2", link: "/blog/dummy2" }
 ];
 
 const asciiArt = `⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
