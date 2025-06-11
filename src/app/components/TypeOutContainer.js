@@ -21,14 +21,11 @@ export default function TypeOutContainer({ children, style = {}, reverseTimeout 
             if (
                 process.env.NODE_ENV === "production" &&
                 href.startsWith("/") &&
-                !href.startsWith(getBasePath()) &&
-                !href.startsWith("https://") &&
-                !href.startsWith("http://")
+                !href.startsWith(getBasePath())
             ) {
                 href = getBasePath() + href;
             }
             router.push(href);
-            setReverse(false);
         }
     }, [pendingHref, router]);
 
@@ -54,18 +51,7 @@ export default function TypeOutContainer({ children, style = {}, reverseTimeout 
     useEffect(() => {
         if (!reverse || !pendingHref) return;
         const timeoutId = setTimeout(() => {
-            let href = pendingHref;
-            if (
-                process.env.NODE_ENV === "production" &&
-                href.startsWith("/") &&
-                !href.startsWith(getBasePath()) &&
-                !href.startsWith("https://") &&
-                !href.startsWith("http://")
-            ) {
-                href = getBasePath() + href;
-            }
-            router.push(href);
-            setReverse(false);
+            router.push(pendingHref);
         }, reverseTimeout);
         return () => clearTimeout(timeoutId);
     }, [reverse, pendingHref, reverseTimeout, router]);
