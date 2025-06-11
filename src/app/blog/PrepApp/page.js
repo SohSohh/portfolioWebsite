@@ -2,7 +2,6 @@
 "use client";
 import Link from 'next/link';
 import '../../global.css';
-import { useRouter } from 'next/navigation';
 import TypeOut from '../../TypeOut';
 import { text, heading } from '../../page.js';
 import TypeOutContainer from '../../components/TypeOutContainer';
