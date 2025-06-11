@@ -85,13 +85,9 @@ export default function BlogPage() {
                         <span dangerouslySetInnerHTML={{ __html: displayed.replace(/\n/g, '<br />') }} />
                     )}
                 />
-                <TypeOut
-                    text={`<a href="/" style="color:#ff5252;text-decoration:underline;">Back to Home</a>`}
-                    style={text}
-                    render={displayed => (
-                        <span dangerouslySetInnerHTML={{__html: displayed}}/>
-                    )}
-                />
+                <Link href="/" style={{ color: "#ff5252", textDecoration: "underline", fontSize: text.fontSize, fontFamily: text.fontFamily }}>
+                    Back to Home
+                </Link>
         </div>
     );
 }
