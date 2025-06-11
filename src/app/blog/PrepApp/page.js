@@ -1,5 +1,6 @@
 // portfolio/src/app/blog/PrepApp/page.js
 "use client";
+import Link from 'next/link';
 import '../../global.css';
 import TypeOut from '../../TypeOut';
 import { text, heading } from '../../page.js';

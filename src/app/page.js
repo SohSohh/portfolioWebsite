@@ -1,6 +1,7 @@
 "use client";
 import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import Link from 'next/link';
 import TypeOut from './TypeOut';
 import './global.css';
 

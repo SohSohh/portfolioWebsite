@@ -1,5 +1,6 @@
 "use client";
 import { useState, useCallback } from "react";
+import Link from 'next/link';
 import { useRouter } from "next/navigation";
 import { text, heading } from '../page.js';
 
@@ -147,9 +148,9 @@ export default function BlogLayout({ children }) {
                     <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                         {blogs.map(blog => (
                             <li key={blog.id} style={{marginBottom: '1rem'}}>
-                                <a href={blog.link} style={{...text, color: '#ff5252', textDecoration: 'none'}}>
+                                <Link href={blog.link} style={{...text, color: '#ff5252', textDecoration: 'none'}}>
                                     {blog.title}
-                                </a>
+                                </Link>
                             </li>
                         ))}
                     </ul>
