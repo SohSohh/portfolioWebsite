@@ -21,11 +21,14 @@ export default function TypeOutContainer({ children, style = {}, reverseTimeout 
             if (
                 process.env.NODE_ENV === "production" &&
                 href.startsWith("/") &&
-                !href.startsWith(getBasePath())
+                !href.startsWith(getBasePath()) &&
+                !href.startsWith("https://") &&
+                !href.startsWith("http://")
             ) {
                 href = getBasePath() + href;
             }
             router.push(href);
+            setReverse(false);
         }
     }, [pendingHref, router]);
 
@@ -55,11 +58,14 @@ export default function TypeOutContainer({ children, style = {}, reverseTimeout 
             if (
                 process.env.NODE_ENV === "production" &&
                 href.startsWith("/") &&
-                !href.startsWith(getBasePath())
+                !href.startsWith(getBasePath()) &&
+                !href.startsWith("https://") &&
+                !href.startsWith("http://")
             ) {
                 href = getBasePath() + href;
             }
             router.push(href);
+            setReverse(false);
         }, reverseTimeout);
         return () => clearTimeout(timeoutId);
     }, [reverse, pendingHref, reverseTimeout, router]);
