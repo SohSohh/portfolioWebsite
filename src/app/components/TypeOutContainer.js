@@ -51,7 +51,15 @@ export default function TypeOutContainer({ children, style = {}, reverseTimeout 
     useEffect(() => {
         if (!reverse || !pendingHref) return;
         const timeoutId = setTimeout(() => {
-            router.push(pendingHref);
+            let href = pendingHref;
+            if (
+                process.env.NODE_ENV === "production" &&
+                href.startsWith("/") &&
+                !href.startsWith(getBasePath())
+            ) {
+                href = getBasePath() + href;
+            }
+            router.push(href);
         }, reverseTimeout);
         return () => clearTimeout(timeoutId);
     }, [reverse, pendingHref, reverseTimeout, router]);
